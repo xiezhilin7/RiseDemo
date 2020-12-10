@@ -40,6 +40,8 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".workmanager.WorkManagerActivity"/>
+
     </application>
 
 </manifest>
