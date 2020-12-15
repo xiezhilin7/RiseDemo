@@ -10,6 +10,12 @@
     <uses-permission
         android:name="android.permission.SET_ALWAYS_FINISH"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".RiseApplication"
@@ -40,7 +46,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".workmanager.WorkManagerActivity"/>
+        <activity android:name=".workmanager.WorkManagerActivity" />
 
     </application>
 

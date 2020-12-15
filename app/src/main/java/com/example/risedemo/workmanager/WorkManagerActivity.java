@@ -26,7 +26,10 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * 关于WorkManager的使用
+ * https://developer.android.google.cn/jetpack/androidx/releases/work
+ */
 public class WorkManagerActivity extends AppCompatActivity {
 
     private Button mOneTimeWork, mPeriodicWork, mChainableWork, mParallelWork, mCancelPeriodicWork, mWorkWithConstraints, mWorkWithData;

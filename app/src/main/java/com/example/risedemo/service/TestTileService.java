@@ -11,6 +11,9 @@ import androidx.annotation.RequiresApi;
 import com.example.risedemo.receiver.AppInstallObserver;
 
 /**
+ * https://developer.android.google.cn/reference/android/service/quicksettings/TileService
+ * <p>
+ * <p>
  * If your device is rooted and under SU admin, you should not need to go through this step. If for some reason there is an error, do go through this step.
  * <p>
  * Using ADB, you must grant following permissions to the app:
@@ -23,7 +26,7 @@ import com.example.risedemo.receiver.AppInstallObserver;
  */
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class TestTileService extends TileService {
-    private static final String TAG = "TileService-TestTileService";
+    private static final String TAG = "Rise-TestTileService";
 
     @Override
     public void onCreate() {

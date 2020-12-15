@@ -5,7 +5,7 @@ import android.app.Application;
 import android.util.Log;
 
 public class RiseApplication extends Application {
-    private static final String TAG = "TileService-RiseApplication";
+    private static final String TAG = "Rise-RiseApplication";
     private static RiseApplication application;
 
     @SuppressLint("LongLogTag")
