@@ -9,23 +9,23 @@ import android.net.Uri;
 /**
  * 通过BroadcastReceiver监听PACKAGE_ADDED
  */
-public class AppInstallObserver extends BroadcastReceiver {
+public class AppInstallMonitorObserver extends BroadcastReceiver {
 
-    private static volatile AppInstallObserver mInstance;
+    private static volatile AppInstallMonitorObserver mInstance;
     private CallBack mCallBack;
 
-    public static AppInstallObserver getInstance(Context context) {
+    public static AppInstallMonitorObserver getInstance(Context context) {
         if (null == mInstance) {
-            synchronized (AppInstallObserver.class) {
+            synchronized (AppInstallMonitorObserver.class) {
                 if (null == mInstance) {
-                    mInstance = new AppInstallObserver(context);
+                    mInstance = new AppInstallMonitorObserver(context);
                 }
             }
         }
         return mInstance;
     }
 
-    private AppInstallObserver(Context context) {
+    private AppInstallMonitorObserver(Context context) {
         registerInstallReceiver(context);
     }
 

@@ -8,7 +8,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.risedemo.receiver.AppInstallObserver;
+import com.example.risedemo.receiver.AppInstallMonitorObserver;
 
 /**
  * https://developer.android.google.cn/reference/android/service/quicksettings/TileService
@@ -62,7 +62,7 @@ public class TestTileService extends TileService {
     public void onStartListening() {
         super.onStartListening();
         Log.e(TAG, "onStartListening");
-        AppInstallObserver.getInstance(getApplicationContext()).addObserver(new AppInstallObserver.CallBack() {
+        AppInstallMonitorObserver.getInstance(getApplicationContext()).addObserver(new AppInstallMonitorObserver.CallBack() {
             @Override
             public void update(String packageName) {
                 Log.e(TAG, "onStartListening when apk installed:" + packageName);

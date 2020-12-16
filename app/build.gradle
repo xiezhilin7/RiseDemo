@@ -10,6 +10,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,13 +28,27 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.navigation:navigation-fragment:2.1.0'
     implementation 'androidx.navigation:navigation-ui:2.1.0'
     implementation 'android.arch.work:work-runtime:1.0.0-beta02'
+    /**
+     * com.facebook.stetho:stetho 是用来查看数据库和本地sp文件的，通过chrome://inspect
+     */
+    implementation 'com.facebook.stetho:stetho:1.3.1'
+    /**
+     * guolin的开源库，用来查看本地数据库，暂不支持修改数据库
+     */
+    debugImplementation 'com.glance.guolindev:glance:1.0.0-alpha01'
+    /**
+     * leakcanary 检查内存泄漏
+     */
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
