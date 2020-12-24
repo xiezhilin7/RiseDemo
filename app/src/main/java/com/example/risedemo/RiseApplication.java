@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.multidex.MultiDex;
 
+import com.example.risedemo.service.HeartBeatService;
+import com.example.risedemo.util.DaemonUtil;
 import com.facebook.stetho.Stetho;
 
 public class RiseApplication extends Application {
@@ -21,14 +23,29 @@ public class RiseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate: RiseApplication");
+        Log.d(TAG, "onCreate: RiseApplication:" + DaemonUtil.getCurProcessName(this));
         MultiDex.install(this);
         application = this;
         enableStetho();
+        registerActivityLifeCycle(this);
+        initDaemonHolder();
 
-        registerActivityLifeCycle();
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        //此处getApplicationContext会报空指针
+        try {
+            registerActivityLifeCycle(getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initDaemonHolder() {
+        DaemonHolder.init(this, HeartBeatService.class);
+    }
 
     private void enableStetho() {
         Stetho.InitializerBuilder initializerBuilder = Stetho.newInitializerBuilder(this);
@@ -43,10 +60,21 @@ public class RiseApplication extends Application {
 
     }
 
-    private void registerActivityLifeCycle() {
-        Context context = getApplicationContext();
+    private void registerActivityLifeCycle(Context context) {
+        if (context == null) {
+            return;
+        }
+        boolean isMainProcess = DaemonUtil.isMainProcess(context);
+        String curProcessName = DaemonUtil.getCurProcessName(context);
+        Log.e(TAG, "registerActivityLifeCycle isMainProcess: " + isMainProcess + ",curProcessName:" + curProcessName);
+
+        Application application;
         if (context instanceof Application) {
-            Application application = (Application) context;
+            application = (Application) context;
+        } else {
+            application = (Application) context.getApplicationContext();
+        }
+        if (application != null) {
             application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
                 @Override
                 public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {

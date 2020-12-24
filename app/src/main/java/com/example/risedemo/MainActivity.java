@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 
+
 @SuppressLint("LongLogTag")
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "Rise-MainActivity";
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "onCreate: main activity");
         findViewById(R.id.work_manager_button).setOnClickListener(this::onClick);
         findViewById(R.id.file_observer_button).setOnClickListener(this::onClick);
+        findViewById(R.id.daemon_service_start).setOnClickListener(this::onClick);
+        findViewById(R.id.daemon_service_stop).setOnClickListener(this::onClick);
+
     }
 
     @Override
@@ -34,6 +38,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.file_observer_button:
                 startFileObserverWatching();
+                break;
+            case R.id.daemon_service_start:
+                DaemonHolder.startService();
+                break;
+            case R.id.daemon_service_stop:
+                DaemonHolder.stopService();
                 break;
             default:
                 break;

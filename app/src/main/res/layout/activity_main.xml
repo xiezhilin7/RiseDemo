@@ -12,6 +12,8 @@
 
     <include layout="@layout/file_observer_button" />
 
+    <include layout="@layout/daemon_service_button" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
