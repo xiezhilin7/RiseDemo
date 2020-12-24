@@ -53,6 +53,12 @@
             android:name=".service.HeartBeatService"
             android:process=":plugin" />
 
+        <provider
+            android:name=".monitor.MultiProcessPreferences"
+            android:authorities="@string/multiprocess_preferences_authority"
+            android:exported="false"
+            />
+
     </application>
 
 </manifest>

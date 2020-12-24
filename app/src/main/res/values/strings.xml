@@ -19,4 +19,5 @@
     <string name="work_with_constraints">Work with Constraints</string>
     <string name="work_with_data">Work With Data</string>
     <string name="out_coming_from_myworkwithdata_class">Out Coming From MyWorkWithData Class</string>
+    <string name="multiprocess_preferences_authority" translatable="false">com.example.risedemo.multiprocesspreferences.PREFFERENCE_AUTHORITY</string>
 </resources>
