@@ -12,7 +12,7 @@
         android:id="@+id/daemon_service_start"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Daemon Service Start"
+        android:text="bind MultiProcessPluginService"
         tools:ignore="MissingConstraints" />
 
     <Button xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,7 +20,7 @@
         android:id="@+id/daemon_service_stop"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Daemon Service Stop"
+        android:text="notify MultiProcess Get MainProcess Value"
         tools:ignore="MissingConstraints" />
 </LinearLayout>
 

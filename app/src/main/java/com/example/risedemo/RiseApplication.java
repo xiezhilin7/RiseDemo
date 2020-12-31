@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,13 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.multidex.MultiDex;
 
-import com.example.risedemo.service.HeartBeatService;
+import com.example.risedemo.service.MultiProcessPluginService;
 import com.example.risedemo.util.DaemonUtil;
 import com.facebook.stetho.Stetho;
 
 public class RiseApplication extends Application {
     private static final String TAG = "Rise-RiseApplication";
     private static RiseApplication application;
+    private Intent serviceMultiProcessIntent;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -28,9 +30,15 @@ public class RiseApplication extends Application {
         application = this;
         enableStetho();
         registerActivityLifeCycle(this);
-        initDaemonHolder();
+        startMultiProcessPluginService();
 
     }
+
+    private void startMultiProcessPluginService() {
+        serviceMultiProcessIntent = new Intent(application, MultiProcessPluginService.class);
+        application.startService(serviceMultiProcessIntent);
+    }
+
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -41,10 +49,6 @@ public class RiseApplication extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void initDaemonHolder() {
-        DaemonHolder.init(this, HeartBeatService.class);
     }
 
     private void enableStetho() {
@@ -108,7 +112,10 @@ public class RiseApplication extends Application {
 
                 @Override
                 public void onActivityDestroyed(@NonNull Activity activity) {
-
+                    Log.e(TAG, "onActivityDestroyed: " + activity.toString());
+                    if (serviceMultiProcessIntent != null && activity instanceof MainActivity) {
+                        application.stopService(serviceMultiProcessIntent);
+                    }
                 }
             });
         }

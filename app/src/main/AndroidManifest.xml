@@ -49,15 +49,18 @@
 
         <activity android:name=".workmanager.WorkManagerActivity" />
 
+        <!--该服务是注册在主进程的服务，是为了测试子进程主动获取主进程的数据-->
+        <service android:name=".service.HeartBeatService" />
+
+        <!--该进程是模拟子进程，主进程可与子进程直接进行通信-->
         <service
-            android:name=".service.HeartBeatService"
+            android:name=".service.MultiProcessPluginService"
             android:process=":plugin" />
 
         <provider
             android:name=".monitor.MultiProcessPreferences"
             android:authorities="@string/multiprocess_preferences_authority"
-            android:exported="false"
-            />
+            android:exported="false" />
 
     </application>
 
