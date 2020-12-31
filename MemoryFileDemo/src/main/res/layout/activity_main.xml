@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.example.risedemo.sharedemo.MainActivity">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"/>
+
+    <Button
+        android:id="@+id/btn_send_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sendmsg" />
+
+    <Button
+        android:id="@+id/btn_take_snapshot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="takesnapshot" />
+    <Button
+        android:id="@+id/btn_take_snapshot2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="takesnapshot2" />
+
+</LinearLayout>
