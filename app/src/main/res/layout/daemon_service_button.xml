@@ -22,6 +22,15 @@
         android:layout_height="50dp"
         android:text="notify MultiProcess Get MainProcess Value"
         tools:ignore="MissingConstraints" />
+
+    <Button xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/bind_messenger_service"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="bind MessengerService"
+        android:onClick="onClick"
+        tools:ignore="MissingConstraints" />
 </LinearLayout>
 
 

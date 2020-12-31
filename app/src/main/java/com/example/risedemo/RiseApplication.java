@@ -34,6 +34,9 @@ public class RiseApplication extends Application {
 
     }
 
+    //ava.lang.RuntimeException: Unable to create application com.example.risedemo.RiseApplication:
+    // java.lang.IllegalStateException: Not allowed to start service Intent { cmp=com.example.risedemo/.service.MultiProcessPluginService }:
+    // app is in background uid UidRecord{3cbcdb1 u0a148 LAST idle procs:1 seq(0,0,0)}
     private void startMultiProcessPluginService() {
         serviceMultiProcessIntent = new Intent(application, MultiProcessPluginService.class);
         application.startService(serviceMultiProcessIntent);

@@ -62,6 +62,14 @@
             android:authorities="@string/multiprocess_preferences_authority"
             android:exported="false" />
 
+        <!--
+            也可以主进程提供MessengerService，不将MessengerService放到子进程
+            然后子进程去bindMessengerService，通过Message进行数据传递
+        -->
+        <service
+            android:name=".service.MessengerService"
+            android:process=":Messenger" />
+
     </application>
 
 </manifest>
