@@ -1,2 +1,3 @@
 include ':app', ':MemoryFileDemo'
+include ':download'
 rootProject.name = "RiseDemo"
