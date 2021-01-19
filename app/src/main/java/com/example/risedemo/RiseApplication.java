@@ -64,7 +64,6 @@ public class RiseApplication extends Application {
         Stetho.Initializer initializer = initializerBuilder.build();
         // Initialize Stetho with the Initializer
         Stetho.initialize(initializer);
-
     }
 
     private void registerActivityLifeCycle(Context context) {

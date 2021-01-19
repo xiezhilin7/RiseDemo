@@ -94,8 +94,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void unbindMultiProcessPluginService() {
         Log.e(TAG, "unbindMultiProcessPluginService()");
-        if (mServiceConnection != null) {
-            unbindService(mServiceConnection);
+        try {
+            if (mServiceConnection != null) {
+                unbindService(mServiceConnection);
+            }
+        } catch (Exception e) {
+
         }
     }
 
@@ -131,8 +135,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void unbindAsyncService() {
         Log.e(TAG, "unbindMultiProcessPluginService()");
-        if (mMessengerServiceConnection != null) {
-            unbindService(mMessengerServiceConnection);
+        try {
+            if (mMessengerServiceConnection != null) {
+                unbindService(mMessengerServiceConnection);
+            }
+        } catch (Exception e) {
+
         }
     }
 

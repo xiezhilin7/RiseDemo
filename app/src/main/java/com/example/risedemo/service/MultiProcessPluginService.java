@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.example.risedemo.HeartBeatAidl;
 import com.example.risedemo.IReceiverAidlInterface;
 import com.example.risedemo.MultiProcessPluginServiceAidl;
+import com.example.risedemo.receiver.AppInstallMonitorObserver;
 
 /**
  * 子进程服务
@@ -27,6 +28,12 @@ public class MultiProcessPluginService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate()");
+        AppInstallMonitorObserver.getInstance(getApplicationContext()).addObserver(new AppInstallMonitorObserver.CallBack() {
+            @Override
+            public void update(String packageName) {
+                Log.e(TAG, "onCreate when apk installed:" + packageName);
+            }
+        });
     }
 
     @Nullable
@@ -80,8 +87,12 @@ public class MultiProcessPluginService extends Service {
 
     private void unbindHeartBeatService() {
         Log.e(TAG, "unbindHeartBeatService()");
-        if (mHeartBeatServiceConnection != null) {
-            unbindService(mHeartBeatServiceConnection);
+        try {
+            if (mHeartBeatServiceConnection != null) {
+                unbindService(mHeartBeatServiceConnection);
+            }
+        } catch (Exception e) {
+
         }
     }
 

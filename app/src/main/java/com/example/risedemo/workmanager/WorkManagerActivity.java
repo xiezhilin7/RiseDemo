@@ -15,6 +15,7 @@ import androidx.work.Constraints;
 import androidx.work.Data;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.Operation;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
@@ -32,6 +33,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class WorkManagerActivity extends AppCompatActivity {
 
+    private static final String TAG = "Rise-WorkManager";
     private Button mOneTimeWork, mPeriodicWork, mChainableWork, mParallelWork, mCancelPeriodicWork, mWorkWithConstraints, mWorkWithData;
 
     private UUID getId;
@@ -58,10 +60,15 @@ public class WorkManagerActivity extends AppCompatActivity {
         mOneTimeWork.setOnClickListener(v -> {
             // This is One Time Work Request.
             OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(MyWork.class)
+                    .setInitialDelay(10, TimeUnit.MINUTES)
                     .build();
 
-            WorkManager.getInstance().enqueue(oneTimeWorkRequest);
+            Operation operation = WorkManager.getInstance().enqueue(oneTimeWorkRequest);
 
+            Log.e(TAG, "operation.getResult():" + operation.getResult());
+            Log.e(TAG, "operation.getResult().isCancelled():" + operation.getResult().isCancelled());
+            Log.e(TAG, "operation.getResult().isDone():" + operation.getResult().isDone());
+            Log.e(TAG, "operation.getState().getValue():" + operation.getState().getValue());
         });
 
         mPeriodicWork.setOnClickListener(v -> {

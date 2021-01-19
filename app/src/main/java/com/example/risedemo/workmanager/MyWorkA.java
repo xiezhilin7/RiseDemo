@@ -9,7 +9,7 @@ import androidx.work.WorkerParameters;
 
 public class MyWorkA extends Worker {
 
-    private static final String TAB = MyWorkA.class.getSimpleName();
+    private static final String TAB =  "Rise-MyWorkA";
 
     public MyWorkA(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);

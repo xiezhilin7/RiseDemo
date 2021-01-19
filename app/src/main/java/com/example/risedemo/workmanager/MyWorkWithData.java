@@ -14,7 +14,7 @@ import com.example.risedemo.R;
 
 public class MyWorkWithData extends Worker {
 
-    private static final String TAB = MyWorkWithData.class.getSimpleName();
+    private static final String TAB = "Rise-MyWorkWithData";
     static final String EXTRA_TITLE = "title";
     static final String EXTRA_TEXT = "text";
     static final String EXTRA_OUTPUT_MESSAGE = "output_message";
