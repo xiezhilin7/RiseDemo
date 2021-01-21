@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.example.risedemo.service.MessengerService;
 import com.example.risedemo.observer.ApkDownloadedObserver;
 import com.example.risedemo.service.MultiProcessPluginService;
+import com.example.risedemo.viewpager.ViewPagerActivity;
 import com.example.risedemo.workmanager.WorkManagerActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.file_observer_button).setOnClickListener(this::onClick);
         findViewById(R.id.daemon_service_start).setOnClickListener(this::onClick);
         findViewById(R.id.daemon_service_stop).setOnClickListener(this::onClick);
+        findViewById(R.id.view_pager_test).setOnClickListener(this::onClick);
     }
 
     @Override
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bind_messenger_service:
                 bindAsyncService();
+                break;
+            case R.id.view_pager_test:
+                startActivity(new Intent(this, ViewPagerActivity.class));
                 break;
             default:
                 break;
