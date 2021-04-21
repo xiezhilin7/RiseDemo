@@ -16,6 +16,8 @@
 
     <include layout="@layout/daemon_service_button" />
 
+    <include layout="@layout/webview_js_test" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
