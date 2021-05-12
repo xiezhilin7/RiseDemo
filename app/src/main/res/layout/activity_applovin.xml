@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="20dp">
+
+    <Button xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/load_applovin_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Load AD"
+        tools:ignore="MissingConstraints" />
+
+    <Button xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/show_applovin_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Show AD"
+        tools:ignore="MissingConstraints" />
+
+</LinearLayout>

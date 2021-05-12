@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 
+import com.example.risedemo.ad.AdTestActivity;
 import com.example.risedemo.service.MessengerService;
 import com.example.risedemo.observer.ApkDownloadedObserver;
 import com.example.risedemo.service.MultiProcessPluginService;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.daemon_service_stop).setOnClickListener(this::onClick);
         findViewById(R.id.view_pager_test).setOnClickListener(this::onClick);
         findViewById(R.id.webview_js_test).setOnClickListener(this::onClick);
+        findViewById(R.id.load_ad_button).setOnClickListener(this::onClick);
     }
 
     @Override
@@ -66,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.webview_js_test:
                 startActivity(new Intent(this, WebViewTestActivity.class));
+                break;
+            case R.id.load_ad_button:
+                startActivity(new Intent(this, AdTestActivity.class));
                 break;
             default:
                 break;

@@ -18,6 +18,8 @@
 
     <include layout="@layout/webview_js_test" />
 
+    <include layout="@layout/load_ad_layout" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

@@ -1,4 +1,10 @@
 apply plugin: 'com.android.application'
+//add use plugin
+apply plugin: 'applovin-quality-service'
+
+applovin {
+    apiKey "ahKT8tM0dUXoC0XNfhKuPvvMPDaZ_zhCd-3g9qn1t8bmAP4GesxtFR2Mc88H6yRagqHJPO1AlwosGyLvB745R7"
+}
 
 android {
     compileSdkVersion 30
@@ -53,5 +59,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
+
+    implementation 'com.applovin:applovin-sdk:+'
 
 }
