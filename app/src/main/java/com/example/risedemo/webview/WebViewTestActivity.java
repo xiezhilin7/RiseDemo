@@ -1,17 +1,14 @@
 package com.example.risedemo.webview;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,47 +16,27 @@ import com.example.risedemo.R;
 
 public class WebViewTestActivity extends AppCompatActivity {
 
-    public static class WebAppInterface {
-        Context mContext;
-
-        // Instantiate the interface and set the context
-        WebAppInterface(Context c) {
-            mContext = c;
-        }
-
-        // Show a toast from the web page
-        @JavascriptInterface
-        public void showToast(String toast) {
-            Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-        }
-
-        @JavascriptInterface
-        public int getAndroidVersion() {
-            return Build.VERSION.SDK_INT;
-        }
-
-        @JavascriptInterface
-        public void showAndroidVersion(String versionName) {
-            Toast.makeText(mContext, versionName, Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
+    public static final String TAG = "Rise-WebViewTest";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview_test);
 
         WebView webView = (WebView) findViewById(R.id.webview);
-        webView.loadUrl("file:///android_asset/index.html");
-
-        // To call methods in Android from using js in the html, AndroidInterface.showToast, AndroidInterface.getAndroidVersion etc
-        webView.addJavascriptInterface(new WebAppInterface(this), "AndroidInterface");
-
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        webView.clearCache(true);
         webView.setWebViewClient(new MyWebViewClient());
         webView.setWebChromeClient(new MyWebChromeClient());
+        webView.loadUrl("file:///android_asset/jsbridge_test.html");
+
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setUseWideViewPort(true);
+        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            new HandleMessage(webView, this);
+        }
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -70,7 +47,7 @@ public class WebViewTestActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onPageFinished (WebView view, String url) {
+        public void onPageFinished(WebView view, String url) {
             //Calling a javascript function in html page
             view.loadUrl("javascript:alert(showVersion('called by Android'))");
         }
