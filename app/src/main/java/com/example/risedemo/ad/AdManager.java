@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.applovin.mediation.MaxAd;
+import com.applovin.mediation.MaxError;
 import com.applovin.mediation.MaxReward;
 import com.applovin.mediation.MaxRewardedAdListener;
 import com.applovin.mediation.ads.MaxRewardedAd;
@@ -62,35 +63,26 @@ public class AdManager {
                 }
 
                 @Override
-                public void onAdLoadFailed(final String adUnitId, final int errorCode) {
-                    // Rewarded ad failed to load
-                    // We recommend retrying with exponentially higher delays up to a maximum delay (in this case 64 seconds)
-                    //重试请求广告
-                    retryAttempt++;
-                    long delayMillis = TimeUnit.SECONDS.toMillis((long) Math.pow(2, Math.min(6, retryAttempt)));
-
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        rewardedAd.loadAd();
-//                    }
-//                }, delayMillis);
-
-                }
-
-                @Override
-                public void onAdDisplayFailed(final MaxAd maxAd, final int errorCode) {
-                    // Rewarded ad failed to display. We recommend loading the next ad
-                    //重试请求广告
-//                rewardedAd.loadAd();
-                }
-
-                @Override
                 public void onAdDisplayed(final MaxAd maxAd) {
                 }
 
                 @Override
                 public void onAdClicked(final MaxAd maxAd) {
+                }
+
+                @Override
+                public void onAdRevenuePaid(MaxAd ad) {
+
+                }
+
+                @Override
+                public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                }
+
+                @Override
+                public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                 }
 
                 @Override
